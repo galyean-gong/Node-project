@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<link href='http://cdn.webfont.youziku.com/webfonts/nomal/97701/46467/592a9fb6f629dc18a8cdd93f.css' rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" type="text/css" href="/stylesheets/bower_components/bootstrap/dist/css/bootstrap.css">
+	
+	<script type="text/javascript" src='/stylesheets/bower_components/jquery/dist/jquery.js'></script>
+	<script type="text/javascript" src='/stylesheets/bower_components/bootstrap/dist/js/bootstrap.js'></script>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+</head>
+<body>
+<div class="container">
+
+
+
+
+	<div class="row">
+		<div class="page-header">
+
+			<h1  class='cssaf3a9276a17da5' style="vertical-align: middle;"><span><img src="/images/movie.png" style="width: 50px;vertical-align: middle;"></span><%=title%></h1>
+			<small>只有想看的,没有看不到的</small>
+		</div>
+		<% for(var item of movies){%>
+			<div class="col-md-2" >
+				<div class="thumbnail" >
+					<a href="movie/<%=item._id%>" >
+						<img src="<%=item.poster%>" style='width: 165;height:240px'>
+					</a>
+					
+				</div>
+				<div class="caption">
+					<h3><%=item.title%></h3>
+				
+					<p>
+					 <a href="movie/<%=item._id%>" class="btn btn-primary" role="button">观看预告片</a></p>
+				</div>
+			</div>
+
+		<%}%>
+	</div>
+</div>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container">
+    	<div class="navbar-header">
+    		<a href="/" class="navbar-brand">Welcome</a><span><img src="/images/look.png" width="40px"></span>
+    	</div>
+      <%if(username){%>
+      <p class="navbar-text navbar-right">
+        <a href="##">当前用户:<%=username%></a>
+        <%if(isAdmin){%>
+             &nbsp;|&nbsp;&nbsp;<span><a href="/admin/list">后台管理</a></span>&nbsp;
+                <%}%>
+        <span>&nbsp;|&nbsp;</span>
+        <a href="/user/loginout">退出</a>
+      </p>
+      <%}else{%>
+      <p class="navbar-text navbar-right">
+        <a class="navbar-link" href="#"  data-toggle="modal" data-target="#signupModal">注册</a>
+        <span>&nbsp;|&nbsp;</span>
+        <a class="navbar-link" href="#"  data-toggle="modal" data-target="#signinModal">登录</a>
+      </p>
+      <%}%>
+    	
+  </div>
+</nav>
+<div id="signupModal"  class="modal fade" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <form  action='/user/regist' method="POST">
+        	<div class="modal-header">注册</div>
+        	<div class="modal-body">
+          <div class="form-group">
+            <label for="signupName" >用户名</label>
+            <input type="text" class="form-control" id="signupName" name="name">
+          </div>
+          <div class="form-group">
+            <label for="signupPassword" >密码</label>
+            <input id="signupPassword" class="form-control"  type="password" name="pas"></input>
+          </div>
+          </div>
+           <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="submit" class="btn btn-success">提交</button>
+      </div>
+        </form>
+     
+     
+    </div>
+  </div>
+</div>
+<div id="signinModal"  class="modal fade" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+     
+        <form method="POST" action='/user/login'>
+        	<div class="modal-header">登录</div>
+        	<div class="modal-body">
+          <div class="form-group">
+            <label for="signinName" >用户名</label>
+            <input type="text" class="form-control" id="signinName" name="name">
+          </div>
+          <div class="form-group">
+            <label for="signinPassword" >密码</label>
+            <input id="signinPassword" class="form-control"  type="password" name="pas"></input>
+          </div>
+          </div>
+           <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="submit" class="btn btn-success">提交</button>
+      </div>
+        </form>
+     
+     
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-5">
+        <nav aria-label="Page navigation">
+  <ul class="pagination">
+    <% if(currentPage == 1){%>
+                 <li class="disabled">
+                  <a href="#" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                    </a>
+                  </li>
+              <% } else {%>
+                  <li>
+                 <a href="/index?page=<%=currentPage-1%>" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                    </a>
+                  </li>
+              <% } %>
+            
+            <% for(var index=1;index<=booksCount;index++){%>
+              <% if(currentPage == index) {%>
+                <li class="active"><a href="/index?page=<%=index%>"><%=index%></a></li>
+              <% } else {%>
+                <li><a href="/index?page=<%=index%>"><%=index%></a></li>
+              <% } %>
+              
+            <%}%>
+            <% if(currentPage == booksCount){%>
+              <li class="disabled">
+                <a href="#" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            <% } else {%>
+              <li>
+                <a href="/index?page=<%=parseInt(currentPage)+1%>" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            <% }%>
+  </ul>
+</nav>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

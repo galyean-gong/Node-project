@@ -1,0 +1,14 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+.title{
+	/*color:red;*/
+}
+a {
+  color: #00B7FF;
+}
+
+.myDl{
+	border-left: 2px solid #ccc
+}

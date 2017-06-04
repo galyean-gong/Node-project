@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/bower_components/jquery/dist/jquery.js">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/bower_components/bootstrap/dist/js/bootstrap.js">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+        <div class="page-header">
+            <h1><a href="/index"><img src="/images/movie.png" style="width:50px"></a><%=title%></h1>
+        </div>
+            <div class="col-md-7">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <embed class="embed-responsive-item" src='<%=movie.flash%>' allowFullScreen='true' quality='hign' width='720' height='600' align='middle' type='application/x-shockwave-flash'></embed>
+                </div>
+            </div>
+            <div class="col-md-5">
+           
+                <dl class="dl-horizontal myDl">
+                    <dt>电影名字</dt>
+                    <dd>
+                        <%= movie.title%>
+                    </dd>
+                    <dt>导演</dt>
+                    <dd>
+                        <%= movie.doctor%>
+                    </dd>
+                    <dt>国家</dt>
+                    <dd>
+                        <%= movie.country%>
+                    </dd>
+                    <dt>语言</dt>
+                    <dd>
+                        <%= movie.language%>
+                    </dd>
+                    <dt>上映年份</dt>
+                    <dd>
+                        <%= movie.year%>
+                    </dd>
+                    <dt>电影简介</dt>
+                    <dd>
+                        <%=movie.summary%>
+                    </dd>
+                </dl>
+                
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
